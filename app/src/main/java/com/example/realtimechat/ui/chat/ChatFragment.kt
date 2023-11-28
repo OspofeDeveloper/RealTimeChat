@@ -62,14 +62,22 @@ class ChatFragment : Fragment() {
 
     private fun initListeners() {
         initBackListener()
+        initLogOutListener()
         initSendMsgListener()
     }
+
 
     /** En este caso necesitamos hacer la navegación una vez se complete la corrutina de
      *  logOut, por lo tanto pasamos la instrucción de navegación a logOut y la ejecutaremos
      *  una vez acabada la corrutina */
     private fun initBackListener() {
         binding.ivBack.setOnClickListener {
+            viewModel.logOut { findNavController().navigate(R.id.action_back) }
+        }
+    }
+
+    private fun initLogOutListener() {
+        binding.ivLogOut.setOnClickListener {
             viewModel.logOut { findNavController().navigate(R.id.action_back) }
         }
     }

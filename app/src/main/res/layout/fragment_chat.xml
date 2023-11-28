@@ -27,11 +27,19 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_marginHorizontal="16dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="Welcome Oscar"/>
+
+        <ImageView
+            android:id="@+id/ivLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/ic_log_out"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
