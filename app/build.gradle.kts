@@ -57,7 +57,8 @@ dependencies {
 
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
-    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
 
     //Android Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
