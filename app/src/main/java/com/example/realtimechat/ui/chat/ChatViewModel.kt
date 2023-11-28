@@ -1,15 +1,13 @@
 package com.example.realtimechat.ui.chat
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.realtimechat.domain.GetMessageUseCase
-import com.example.realtimechat.domain.SendMessageUseCase
+import com.example.realtimechat.domain.usecases.GetMessageUseCase
+import com.example.realtimechat.domain.usecases.SendMessageUseCase
 import com.example.realtimechat.domain.model.MessageModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +27,6 @@ class ChatViewModel @Inject constructor(
     private fun getMessages(){
         viewModelScope.launch {
             getMessageUseCase().collect{
-                Log.d("Pozo", "la info es $it")
                 _state.value = it
             }
         }

@@ -1,4 +1,4 @@
-package com.example.realtimechat.domain
+package com.example.realtimechat.domain.usecases
 
 import android.icu.util.Calendar
 import com.example.realtimechat.data.network.FirebaseChatService
