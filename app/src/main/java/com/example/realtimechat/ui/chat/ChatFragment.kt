@@ -43,13 +43,16 @@ class ChatFragment : Fragment() {
     private fun initUI() {
         initUIState()
         initListeners()
-        initRecyclerview()
+        setupToolbar()
+        setUpMessages()
     }
 
     private fun initUIState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
+                    /** Llamamos a setupToolbar aqui porque asi tenemos el nombre siempre */
+                    setupToolbar()
                     chatAdapter.updateList(it.toMutableList(), viewModel.name)
                     binding.rvChatMsg.scrollToPosition(chatAdapter.messageList.size - 1)
                 }
@@ -62,8 +65,13 @@ class ChatFragment : Fragment() {
         initSendMsgListener()
     }
 
+    /** En este caso necesitamos hacer la navegación una vez se complete la corrutina de
+     *  logOut, por lo tanto pasamos la instrucción de navegación a logOut y la ejecutaremos
+     *  una vez acabada la corrutina */
     private fun initBackListener() {
-        binding.ivBack.setOnClickListener { findNavController().navigate(R.id.action_back) }
+        binding.ivBack.setOnClickListener {
+            viewModel.logOut { findNavController().navigate(R.id.action_back) }
+        }
     }
 
     private fun initSendMsgListener() {
@@ -77,7 +85,11 @@ class ChatFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerview() {
+    private fun setupToolbar() {
+        binding.tvTitle.text = viewModel.name
+    }
+
+    private fun setUpMessages() {
         chatAdapter = ChatAdapter(mutableListOf())
         binding.rvChatMsg.apply {
             adapter = chatAdapter

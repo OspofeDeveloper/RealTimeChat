@@ -31,7 +31,15 @@ class DataRepositoryImpl @Inject constructor(
     }
 
     override fun getUserName(): Flow<String> {
-       return context.userPreferencesDataStore.data.map { preferences -> preferences[USER_NAME] ?: "" }
+        return context.userPreferencesDataStore.data.map { preferences ->
+            preferences[USER_NAME] ?: ""
+        }
+    }
+
+    override suspend fun clearUserName() {
+        context.userPreferencesDataStore.edit { preferences ->
+            preferences[USER_NAME] = ""
+        }
     }
 
 }

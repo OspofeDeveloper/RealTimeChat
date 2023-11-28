@@ -6,6 +6,7 @@ import com.example.realtimechat.domain.usecases.GetUserNameUseCase
 import com.example.realtimechat.domain.usecases.SaveUserNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -27,7 +28,7 @@ class HomeViewModel @Inject constructor(
     private fun verifyUserLogged() {
         /** Si existe el nombre ya estamos loggeados asi que podemos evitar pasar por home*/
         viewModelScope.launch {
-            val name = getUserNameUseCase()
+            val name = async { getUserNameUseCase() }.await()
             if(name.isNotEmpty()) {
                 _state.value = HomeViewState.REGISTERED
             } else {

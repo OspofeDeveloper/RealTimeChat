@@ -8,4 +8,6 @@ interface DataRepository {
 
     /** Esta función no es suspend porque es un Flow directamente */
     fun getUserName(): Flow<String>
+
+    suspend fun clearUserName()
 }
