@@ -70,7 +70,7 @@
 
         <EditText
             android:id="@+id/etChat"
-            android:layout_weight="1f"
+            android:layout_weight="1"
             android:inputType="text"
             android:hint="@string/send_message_hint"
             android:layout_width="wrap_content"
