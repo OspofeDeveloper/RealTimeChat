@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo_realtime_chat"
+        android:padding="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_message"
+        android:textSize="28sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/card_me_background"
+        app:layout_constraintTop_toBottomOf="@id/ivLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_message_subtitle"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/card_me_background"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:inputType="text"
+            android:hint="@string/username_hint"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/start_chat_string"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilName"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
