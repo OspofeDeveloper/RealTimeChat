@@ -5,4 +5,7 @@
     <color name="card_other_background">#eef1f6</color>
     <color name="message_me_color">#FFFFFF</color>
     <color name="message_other_color">#000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
