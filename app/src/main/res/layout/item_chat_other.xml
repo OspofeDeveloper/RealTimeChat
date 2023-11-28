@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvDateOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/hour_date_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="9 of December"/>
+
+    <ImageView
+        android:id="@+id/ivUserOther"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="12dp"
+        app:layout_constraintBottom_toTopOf="@id/cvChatOther"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:background="@color/hour_date_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="6dp"
+        app:layout_constraintStart_toEndOf="@id/ivUserOther"
+        app:layout_constraintBottom_toTopOf="@id/cvChatOther"
+        tools:text="Oscar Pozo"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvChatOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/card_other_background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDateOther"
+        app:cardUseCompatPadding="true"> <!-- Padding inside card controlling corner radius -->
+
+        <TextView
+            android:id="@+id/tvChatOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/message_other_color"
+            tools:text="This is the other's message"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:textColor="@color/hour_date_color"
+        app:layout_constraintStart_toEndOf="@id/cvChatOther"
+        app:layout_constraintBottom_toBottomOf="@id/cvChatOther"
+        tools:text="12:45"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

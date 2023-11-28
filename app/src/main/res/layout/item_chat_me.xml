@@ -17,7 +17,7 @@
         tools:text="9 of December"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvChat"
+        android:id="@+id/cvChatMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="0dp"
@@ -44,8 +44,8 @@
         android:layout_height="wrap_content"
         android:textSize="11sp"
         android:textColor="@color/hour_date_color"
-        app:layout_constraintEnd_toStartOf="@id/cvChat"
-        app:layout_constraintBottom_toBottomOf="@id/cvChat"
+        app:layout_constraintEnd_toStartOf="@id/cvChatMe"
+        app:layout_constraintBottom_toBottomOf="@id/cvChatMe"
         tools:text="12:45"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
