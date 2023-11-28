@@ -19,6 +19,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         binding.btnChat.setOnClickListener {
             if(!binding.tietName.text.isNullOrEmpty()) {
                 findNavController().navigate(R.id.action_home_fragment_to_chat_fragment)
