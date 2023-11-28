@@ -5,11 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.realtimechat.R
 import com.example.realtimechat.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -32,7 +38,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun initUI() {
+        initUIState()
         initListeners()
+    }
+
+    private fun initUIState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect {
+                    when (it) {
+                        is HomeViewState.LOADING -> { binding.pbLoading.isVisible = true }
+                        is HomeViewState.REGISTERED -> { findNavController().navigate(R.id.action_home_fragment_to_chat_fragment) }
+                        is HomeViewState.UNREGISTERED -> { binding.pbLoading.isVisible = false }
+                    }
+                }
+            }
+        }
     }
 
     private fun initListeners() {

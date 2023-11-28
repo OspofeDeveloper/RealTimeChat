@@ -67,7 +67,14 @@ class ChatFragment : Fragment() {
     }
 
     private fun initSendMsgListener() {
-        binding.btnSendMsg.setOnClickListener { viewModel.sendMessage() }
+        binding.btnSendMsg.setOnClickListener {
+            val msg = binding.etChat.text.toString()
+
+            if(msg.isNotEmpty()) {
+                viewModel.sendMessage(msg)
+            }
+            binding.etChat.text.clear()
+        }
     }
 
     private fun initRecyclerview() {

@@ -9,9 +9,9 @@ import javax.inject.Inject
 class SendMessageUseCase @Inject constructor(
     private val firebaseChatService: FirebaseChatService
 ) {
-    operator fun invoke(msg: String) {
+    operator fun invoke(msg: String, userName: String) {
         val calendar = Calendar.getInstance()
-        val userDto = UserDto("Prueba", false)
+        val userDto = UserDto(userName, false)
 
         calendar.apply {
             val messageDto = MessageDto(
