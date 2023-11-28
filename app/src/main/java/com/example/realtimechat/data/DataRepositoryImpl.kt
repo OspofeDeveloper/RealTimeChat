@@ -8,6 +8,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.realtimechat.domain.DataRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DataRepositoryImpl @Inject constructor(
@@ -26,6 +28,10 @@ class DataRepositoryImpl @Inject constructor(
         context.userPreferencesDataStore.edit { preferences ->
             preferences[USER_NAME] = nickName
         }
+    }
+
+    override fun getUserName(): Flow<String> {
+       return context.userPreferencesDataStore.data.map { preferences -> preferences[USER_NAME] ?: "" }
     }
 
 }

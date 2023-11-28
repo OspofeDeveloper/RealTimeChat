@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.realtimechat.R
 import com.example.realtimechat.databinding.FragmentChatBinding
-import com.example.realtimechat.domain.model.MessageModel
 import com.example.realtimechat.ui.chat.adapter.ChatAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -51,7 +50,7 @@ class ChatFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
-                    chatAdapter.updateList(it.toMutableList())
+                    chatAdapter.updateList(it.toMutableList(), viewModel.name)
                     binding.rvChatMsg.scrollToPosition(chatAdapter.messageList.size - 1)
                 }
             }
@@ -72,7 +71,7 @@ class ChatFragment : Fragment() {
     }
 
     private fun initRecyclerview() {
-        chatAdapter = ChatAdapter(mutableListOf(), "pozo")
+        chatAdapter = ChatAdapter(mutableListOf())
         binding.rvChatMsg.apply {
             adapter = chatAdapter
             layoutManager = LinearLayoutManager(context)
