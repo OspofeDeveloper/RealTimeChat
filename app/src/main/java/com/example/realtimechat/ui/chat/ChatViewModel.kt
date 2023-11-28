@@ -19,14 +19,14 @@ class ChatViewModel @Inject constructor(
     private val getMessageUseCase: GetMessageUseCase
 ): ViewModel() {
 
+    private var _state = MutableStateFlow<List<MessageModel>>(emptyList())
+    val state: StateFlow<List<MessageModel>> = _state
+
     init {
         getMessages()
     }
 
-    private var _state = MutableStateFlow<List<MessageModel>>(emptyList())
-    val state: StateFlow<List<MessageModel>> = _state
-
-    fun getMessages(){
+    private fun getMessages(){
         viewModelScope.launch {
             getMessageUseCase().collect{
                 Log.d("Pozo", "la info es $it")

@@ -26,6 +26,7 @@
         tools:background="@color/hour_date_color"/>
 
     <TextView
+        android:id="@+id/tvNameOther"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="6dp"
