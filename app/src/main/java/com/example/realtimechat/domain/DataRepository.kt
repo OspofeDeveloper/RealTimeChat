@@ -1,5 +1,6 @@
 package com.example.realtimechat.domain
 
+import com.example.realtimechat.domain.model.MessageModel
 import kotlinx.coroutines.flow.Flow
 
 interface DataRepository {
@@ -10,4 +11,6 @@ interface DataRepository {
     fun getUserName(): Flow<String>
 
     suspend fun clearUserName()
+
+    suspend fun sendMessage(messageModel: MessageModel)
 }

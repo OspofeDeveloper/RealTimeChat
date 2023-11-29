@@ -48,7 +48,9 @@ class ChatViewModel @Inject constructor(
     }
 
     fun sendMessage(msg: String) {
-        sendMessageUseCase(msg, name)
+        viewModelScope.launch {
+            sendMessageUseCase(msg, name)
+        }
     }
 
     /** Si necesitamos el resultado de una corrutina para hacer algo en UI tenemos

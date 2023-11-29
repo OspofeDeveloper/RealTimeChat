@@ -4,26 +4,29 @@ import android.icu.util.Calendar
 import com.example.realtimechat.data.network.FirebaseChatService
 import com.example.realtimechat.data.network.dto.MessageDto
 import com.example.realtimechat.data.network.dto.UserDto
+import com.example.realtimechat.domain.DataRepository
+import com.example.realtimechat.domain.model.MessageModel
+import com.example.realtimechat.domain.model.UserModel
 import javax.inject.Inject
 
 class SendMessageUseCase @Inject constructor(
-    private val firebaseChatService: FirebaseChatService
+    private val dataRepository: DataRepository,
 ) {
-    operator fun invoke(msg: String, userName: String) {
+    suspend operator fun invoke(msg: String, userName: String) {
         val calendar = Calendar.getInstance()
-        val userDto = UserDto(userName, false)
+        val userModel = UserModel(userName, false)
 
         val hour = getCorrectHour(calendar)
         val date = getCorrectDate(calendar)
 
-        val messageDto = MessageDto(
+        val messageModel = MessageModel(
             msg = msg,
             hour = hour,
             date = date,
-            user = userDto
+            user = userModel
         )
 
-        firebaseChatService.sendMsgToFirebase(messageDto = messageDto)
+        dataRepository.sendMessage(messageModel)
 
     }
 

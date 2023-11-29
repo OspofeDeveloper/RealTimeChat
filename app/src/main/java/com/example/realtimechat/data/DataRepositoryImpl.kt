@@ -6,14 +6,17 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.realtimechat.data.network.FirebaseChatService
 import com.example.realtimechat.domain.DataRepository
+import com.example.realtimechat.domain.model.MessageModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DataRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val firebaseChatService: FirebaseChatService
 ) : DataRepository {
 
     companion object {
@@ -40,6 +43,10 @@ class DataRepositoryImpl @Inject constructor(
         context.userPreferencesDataStore.edit { preferences ->
             preferences[USER_NAME] = ""
         }
+    }
+
+    override suspend fun sendMessage(messageModel: MessageModel) {
+        firebaseChatService.sendMsgToFirebase(messageModel.toDto())
     }
 
 }
